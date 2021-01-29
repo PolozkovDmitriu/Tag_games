@@ -1,7 +1,5 @@
 body {
-	background: rgb(165, 165, 165);
-	width: 100%;
-	height: 100vh;
+	background: #d3f7ff;
 	display: inline-block;
 }
 
@@ -18,12 +16,12 @@ body {
 }
 
 .wrapper {
-	width: 100vw;
-	height: 100vh;
+	height: 100%;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
 	align-items: center;
+	margin-top: 60px;
 }
 
 .counters {
@@ -121,12 +119,141 @@ body {
 
 .keys {
 	background: #fff;
-	width: 600px;
 	height: 600px;
+	width: 600px;
+	border: 3px solid #000;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.keys div {
+.keys-ops {
 	width: 150px;
 	height: 150px;
 	background: #5454c5;
+	display: inline-block;
+	border: 1px solid #000;
+	box-sizing: border-box;
+	font-size: 65px;
+	text-align: center;
+}
+
+.keys-ops p {
+	padding: 37px;
+}
+
+.key-1 {
+	position: relative;
+}
+
+.key-2 {
+	position: relative;
+	right: 4px;
+}
+
+.key-3 {
+	position: relative;
+	right: 8px;
+}
+
+.key-4 {
+	position: relative;
+	left: 450px;
+	bottom: 150px;
+}
+
+.key-5 {
+	position: relative;
+	right: 154px;
+}
+
+.key-6 {
+	position: relative;
+	right: 158px;
+}
+
+.key-7 {
+	position: relative;
+	left: 300px;
+	bottom: 150px;
+}
+
+.key-8 {
+	position: relative;
+	left: 296px;
+	bottom: 150px;
+}
+
+.key-9 {
+	position: relative;
+	right: 308px;
+}
+
+.key-10 {
+	position: relative;
+	bottom: 150px;
+	left: 150px;
+}
+
+.key-11 {
+	position: relative;
+	left: 146px;
+	bottom: 150px;
+}
+
+.key-12 {
+	position: relative;
+	bottom: 150px;
+	left: 142px;
+}
+
+.key-13 {
+	position: relative;
+	bottom: 150px;
+}
+
+.key-14 {
+	position: relative;
+	bottom: 150px;
+	right: 4px;
+}
+
+.key-15 {
+	position: relative;
+	bottom: 150px;
+	right: 8px;
+}
+
+.white-key {
+	border: 1px solid #000;
+	box-sizing: border-box;
+	width: 150px;
+	height: 150px;
+	background: #fff;
+	display: inline-block;
+	position: relative;
+	bottom: 300px;
+	left: 450px;
+}
+
+.magagement {
+	width: 600px;
+	height: 80px;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
+
+.input {
+	width: 280px;
+	height: 80px;
+	background-color: #000;
+	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 20px;
+	text-align: center;
+	display: inline-block;
+}
+
+.input p {
+	font-size: 47px;
+	color: #fff;
+	padding: 15px;
 }
