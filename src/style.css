@@ -1,0 +1,132 @@
+body {
+	background: rgb(165, 165, 165);
+	width: 100%;
+	height: 100vh;
+	display: inline-block;
+}
+
+.font-ris {
+	font-family: "Risque", cursive;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.font-rob {
+	font-family: "Roboto", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.wrapper {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+.counters {
+	width: 100vw;
+	height: 10vh;
+	display: flex;
+	justify-content: center;
+}
+
+.time {
+	background: #000;
+	width: 225px;
+	height: 72px;
+	box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.time-p {
+	color: #ffffff;
+	font-size: 28px;
+}
+
+.watch {
+	width: 110px;
+	height: 40px;
+	background: #fff;
+	border-radius: 12px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.p-watch-1 {
+	font-size: 28px;
+	margin-left: 8px;
+}
+
+.p-watch-2 {
+	font-size: 28px;
+	margin-bottom: 6px;
+}
+
+.p-watch-3 {
+	font-size: 28px;
+	margin-right: 8px;
+}
+
+.and {
+	width: 150px;
+	height: 72px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.and p {
+	font-size: 28px;
+}
+
+.step {
+	width: 225px;
+	height: 72px;
+	background: #000;
+	box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.25);
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.p-step {
+	color: #ffffff;
+	font-size: 28px;
+}
+
+.number-of-steps {
+	width: 110px;
+	height: 40px;
+	background: #fff;
+	border-radius: 12px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.numbers {
+	color: #000000;
+	font-size: 28px;
+}
+
+.wrapper2 {
+	height: 600px;
+}
+
+.keys {
+	background: #fff;
+	width: 600px;
+	height: 600px;
+}
+
+.keys div {
+	width: 150px;
+	height: 150px;
+	background: #5454c5;
+}
