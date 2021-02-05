@@ -113,22 +113,15 @@ function RandomNambers() {
 	nam_a = JSON.stringify();
 	nam_b = JSON.stringify();
 	for (let i = 0; i < BLANK_P.length; i++) {
-		for (let j = 0; j < BLANK_P[i].length; j++) {
-
+		for (let j = 0; j < BLANK_P.length; j++) {
 			num = Math.floor(1 + Math.random() * (16 - 1));
 			BLANK_P[i][j] = num;
-
-		}
-	}
-
-
-	for (let a = 0; a < BLANK_P.length; a++) {
-		if (a == 0) {
-			for (d = 0; d < BLANK_P.length; d++) {
-				for (s = 0; s < BLANK_P.length; s++) {
-					num = Math.floor(1 + Math.random() * (16 - 1));
-					if ((BLANK_P[a][d] == BLANK_P[d][s]) && (BLANK_P[a][d] !== num)) {
-						BLANK_P[d][s] = num;
+			for (s = 0; s < BLANK_P.length; s++) {
+				num1 = Math.floor(1 + Math.random() * (16 - 1));
+				if ((BLANK_P[i][j] == BLANK_P[j][s]) && (BLANK_P[i][j] !== num1)) {
+					BLANK_P[i][j] = num1;
+					if ((BLANK_P[i][j] == 16)) {
+						BLANK_P[i][j] = 15;
 					}
 				}
 			}
@@ -136,6 +129,8 @@ function RandomNambers() {
 	}
 	console.log(BLANK_P);
 }
+
+
 
 
 RandomNambers();
