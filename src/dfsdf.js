@@ -33,7 +33,7 @@ key12.className = 'keys-ops';
 key13.className = 'keys-ops';
 key14.className = 'keys-ops';
 key15.className = 'keys-ops';
-key0.className = 'white-key';
+key0.className = 'white-key , keys-ops';
 
 let key1p = document.getElementById('key-1-p');
 let key2p = document.getElementById('key-2-p');
@@ -69,25 +69,28 @@ key14p.className = 'keys-p';
 key15p.className = 'keys-p';
 key0p.className = 'keys-p';
 
+
+
+//RandomNumbers
+
+
+//Сделать блоки кликабельными 
+
 let BLANK = [
-	[1, 1, 1, 1, 1, 1],
-	[1, key1, key2, key3, key4, 1],
-	[1, key5, key6, key7, key8, 1],
-	[1, key9, key10, key11, key12, 1],
-	[1, key13, key14, key15, key0, 1],
-	[1, 1, 1, 1, 1, 1]
+	[key1, key2, key3, key4],
+	[key5, key6, key7, key8],
+	[key9, key10, key11, key12],
+	[key13, key14, key15, null]
 ];
 
-let BLANKdd = [
-	[1, 1, 1, 1, 1, 1],
-	[1, key1, key2, key3, key4, 1],
-	[1, key5, key6, key7, key8, 1],
-	[1, key9, key10, key11, key12, 1],
-	[1, key13, key14, key15, key0, 1],
-	[1, 1, 1, 1, 1, 1]
-];
+
+
+//BLANK[i][j-1] == null || BLANK[i][j+1] == null || BLANK[i-1][j]= null
+
+let selectedDiv;
 
 let Keys = document.getElementById('Keys');
+
 let target;
 
 Keys.onclick = function clk(event) {
@@ -96,6 +99,8 @@ Keys.onclick = function clk(event) {
 	if (!'div') return;
 
 	perebor(target);
+
+	/* 	prisvoenie(target); */
 
 };
 
@@ -106,52 +111,42 @@ function perebor(target) {
 
 			if (BLANK[i][j] == target) {
 
-				let left = BLANK[i][j - 1];
-				let right = BLANK[i][j + 1];
-				let up = BLANK[i - 1][j];
-				let down = BLANK[i + 1][j];
+				if (
+					(BLANK[i][j - 1] == null && !undefined)
+					|| (BLANK[i][j + 1] == null && !undefined)
+					|| (BLANK[i - 1][j] == null && !undefined)
+					|| (BLANK[i + 1][j] == null && !undefined)) {
 
-				let leftDD = BLANKdd[i][j - 1];
-				let rightDD = BLANKdd[i][j + 1];
-				let upDD = BLANKdd[i - 1][j];
-				let downDD = BLANKdd[i + 1][j];
-
-				let targetFor = BLANK[i][j];
-
-				if (left == key0) {
-					BLANK[i][j] = key0;
-					targetFor.classList.add('white-key');
-					leftDD.classList.remove('white-key');
-					leftDD.classList.add('keys-ops');
-					console.log(BLANK);
-					console.log(BLANKdd);
-
-				} else if (right == key0) {
-					BLANK[i][j] = key0;
-					targetFor.classList.add('white-key');
-					rightDD.classList.remove('white-key');
-					rightDD.classList.add('keys-ops');
-					console.log(BLANK);
-					console.log(BLANKdd);
-
-				} else if (up == key0) {
-					BLANK[i][j] = key0;
-					targetFor.classList.add('white-key');
-					upDD.classList.remove('white-key');
-					upDD.classList.add('keys-ops');
-					console.log(BLANK);
-					console.log(BLANKdd);
-
-				} else if (down == key0) {
-					BLANK[i][j] = key0;
-					targetFor.classList.add('white-key');
-					downDD.classList.remove('white-key');
-					downDD.classList.add('keys-ops');
-					console.log(BLANK);
-					console.log(BLANKdd);
+					onHighlight(target);
 
 				}
 			}
 		}
 	}
-};
+}
+
+/* function prisvoenie(target) {
+	for (let i = 0; i < BLANK.length; i++) {
+
+		for (let j = 0; j < BLANK.length; j++) {
+
+			let rem = BLANK[i][j];
+			if (!target == rem) {
+				rem.classList.add('keys-ops');
+			}
+		}
+	}
+} */
+
+function onHighlight(div) {
+
+	selectedDiv = div;
+	selectedDiv.classList.add('white-key');
+
+
+}
+
+
+
+
+

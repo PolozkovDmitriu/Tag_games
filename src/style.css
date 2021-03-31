@@ -142,12 +142,6 @@ body {
 }
 
 .white-key {
-	width: 150px;
-	height: 150px;
-	background: #fff;
-	display: inline-block;
-	border: 1px solid #000;
-	box-sizing: border-box;
 	opacity: 0;
 }
 
