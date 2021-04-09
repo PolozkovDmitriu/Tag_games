@@ -1,157 +1,87 @@
 "use strict"
 
-let key1 = document.getElementById('key1');
-let key2 = document.getElementById('key2');
-let key3 = document.getElementById('key3');
-let key4 = document.getElementById('key4');
-let key5 = document.getElementById('key5');
-let key6 = document.getElementById('key6');
-let key7 = document.getElementById('key7');
-let key8 = document.getElementById('key8');
-let key9 = document.getElementById('key9');
-let key10 = document.getElementById('key10');
-let key11 = document.getElementById('key11');
-let key12 = document.getElementById('key12');
-let key13 = document.getElementById('key13');
-let key14 = document.getElementById('key14');
-let key15 = document.getElementById('key15');
-let key0 = document.getElementById('key0');
+const numbersRandom = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+const numbers = [];
+const button_p = [];
 
 
-key1.className = 'keys-ops';
-key2.className = 'keys-ops';
-key3.className = 'keys-ops';
-key4.className = 'keys-ops';
-key5.className = 'keys-ops';
-key6.className = 'keys-ops';
-key7.className = 'keys-ops';
-key8.className = 'keys-ops';
-key9.className = 'keys-ops';
-key10.className = 'keys-ops';
-key11.className = 'keys-ops';
-key12.className = 'keys-ops';
-key13.className = 'keys-ops';
-key14.className = 'keys-ops';
-key15.className = 'keys-ops';
-key0.className = 'white-key';
+for (let i = 0; (i < 16) && (i < numbersRandom.length); i++) {
+	let r = Math.floor(Math.random() * (numbersRandom.length - i)) + i;
+	let numbersTemporary = numbersRandom[r];
+	numbersRandom[r] = numbersRandom[i];
+	numbersRandom[i] = numbersTemporary;
+	numbers.unshift(numbersTemporary);
 
-let key1p = document.getElementById('key-1-p');
-let key2p = document.getElementById('key-2-p');
-let key3p = document.getElementById('key-3-p');
-let key4p = document.getElementById('key-4-p');
-let key5p = document.getElementById('key-5-p');
-let key6p = document.getElementById('key-6-p');
-let key7p = document.getElementById('key-7-p');
-let key8p = document.getElementById('key-8-p');
-let key9p = document.getElementById('key-9-p');
-let key10p = document.getElementById('key-10-p');
-let key11p = document.getElementById('key-11-p');
-let key12p = document.getElementById('key-12-p');
-let key13p = document.getElementById('key-13-p');
-let key14p = document.getElementById('key-14-p');
-let key15p = document.getElementById('key-15-p');
-let key0p = document.getElementById('key-0-p');
+	const key16 = null;
 
-key1p.className = 'keys-p';
-key2p.className = 'keys-p';
-key3p.className = 'keys-p';
-key4p.className = 'keys-p';
-key5p.className = 'keys-p';
-key6p.className = 'keys-p';
-key7p.className = 'keys-p';
-key8p.className = 'keys-p';
-key9p.className = 'keys-p';
-key10p.className = 'keys-p';
-key11p.className = 'keys-p';
-key12p.className = 'keys-p';
-key13p.className = 'keys-p';
-key14p.className = 'keys-p';
-key15p.className = 'keys-p';
-key0p.className = 'keys-p';
-
-let BLANK = [
-	[1, 1, 1, 1, 1, 1],
-	[1, key1, key2, key3, key4, 1],
-	[1, key5, key6, key7, key8, 1],
-	[1, key9, key10, key11, key12, 1],
-	[1, key13, key14, key15, key0, 1],
-	[1, 1, 1, 1, 1, 1]
-];
-
-let BLANKdd = [
-	[1, 1, 1, 1, 1, 1],
-	[1, key1, key2, key3, key4, 1],
-	[1, key5, key6, key7, key8, 1],
-	[1, key9, key10, key11, key12, 1],
-	[1, key13, key14, key15, key0, 1],
-	[1, 1, 1, 1, 1, 1]
-];
-
-let Keys = document.getElementById('Keys');
-let target;
-
-Keys.onclick = function clk(event) {
-	let target = event.target.closest('div');
-
-	if (!'div') return;
-
-	perebor(target);
-
-};
-
-function perebor(target) {
-	for (let i = 0; i < BLANK.length; i++) {
-
-		for (let j = 0; j < BLANK.length; j++) {
-
-			if (BLANK[i][j] == target) {
-
-				let left = BLANK[i][j - 1];
-				let right = BLANK[i][j + 1];
-				let up = BLANK[i - 1][j];
-				let down = BLANK[i + 1][j];
-
-				let leftDD = BLANKdd[i][j - 1];
-				let rightDD = BLANKdd[i][j + 1];
-				let upDD = BLANKdd[i - 1][j];
-				let downDD = BLANKdd[i + 1][j];
-
-				let targetFor = BLANK[i][j];
-
-				if (left == key0) {
-					BLANK[i][j] = key0;
-					targetFor.classList.add('white-key');
-					leftDD.classList.remove('white-key');
-					leftDD.classList.add('keys-ops');
-					console.log(BLANK);
-					console.log(BLANKdd);
-
-				} else if (right == key0) {
-					BLANK[i][j] = key0;
-					targetFor.classList.add('white-key');
-					rightDD.classList.remove('white-key');
-					rightDD.classList.add('keys-ops');
-					console.log(BLANK);
-					console.log(BLANKdd);
-
-				} else if (up == key0) {
-					BLANK[i][j] = key0;
-					targetFor.classList.add('white-key');
-					upDD.classList.remove('white-key');
-					upDD.classList.add('keys-ops');
-					console.log(BLANK);
-					console.log(BLANKdd);
-
-				} else if (down == key0) {
-					BLANK[i][j] = key0;
-					targetFor.classList.add('white-key');
-					downDD.classList.remove('white-key');
-					downDD.classList.add('keys-ops');
-					console.log(BLANK);
-					console.log(BLANKdd);
-
-				}
-			}
-		}
+	if (i == 14) {
+		numbers.push(key16);
 	}
-};
+}
+
+const parent = document.getElementById('keys');
+
+numbers.forEach((number, index) => {
+	button_p.push(createButton(parent, number, index));
+});
+
+let whiteKey = button_p[15];
+whiteKey.classList.add('white-key');
+
+function createButton(parent, number, index) {
+	const div = document.createElement("div");
+	parent.appendChild(div);
+	div.classList.add('keys-ops');
+
+	div.addEventListener("click", (event) => {
+		onButtonClick(event, index);
+	});
+
+	const p = document.createElement("p");
+	p.classList.add('keys-p');
+	div.appendChild(p);
+
+	p.innerText = number;
+
+	return (p, div);
+}
+
+function onButtonClick(event, index) {
+
+	let replaceIndex = null;
+
+	if (numbers[index - 1] == null) {
+		replaceIndex = index - 1;
+	}
+
+	if (numbers[index + 1] == null) {
+		replaceIndex = index + 1;
+	}
+
+	if (numbers[index - 4] == null) {
+		replaceIndex = index - 4;
+	}
+
+	if (numbers[index + 4] == null) {
+		replaceIndex = index + 4;
+	}
+	//============================================================
+	if (replaceIndex != (null || undefined)) {
+
+		let temp = numbers[replaceIndex];//num
+
+		let textRemOffClic = button_p[index];//but
+		textRemOffClic.classList.add('white-key');
+		textRemOffClic.innerText = numbers[replaceIndex];//but
+
+		numbers[replaceIndex] = numbers[index];//num
+
+		let textRemOnClic = button_p[replaceIndex];//but
+		textRemOnClic.innerText = numbers[index];//but
+		textRemOnClic.classList.remove('white-key');
+
+		numbers[index] = temp;//num
+
+	}
+
+}

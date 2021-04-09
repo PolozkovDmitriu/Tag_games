@@ -124,6 +124,8 @@ body {
 
 .keys div {
 	position: relative;
+	width: 150px;
+	height: 150px;
 }
 
 .keys-ops {
@@ -133,9 +135,6 @@ body {
 	display: inline-block;
 	border: 1px solid #000;
 	box-sizing: border-box;
-}
-
-.keys-p {
 	padding: 37px;
 	font-size: 65px;
 	text-align: center;
