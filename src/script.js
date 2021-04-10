@@ -20,6 +20,7 @@ for (let i = 0; (i < 16) && (i < numbersRandom.length); i++) {
 }
 
 const parent = document.getElementById('keys');
+const parentStep = document.getElementById('stepText');
 
 numbers.forEach((number, index) => {
 	button_p.push(createButton(parent, number, index));
@@ -29,12 +30,14 @@ let whiteKey = button_p[15];
 whiteKey.classList.add('white-key');
 
 function createButton(parent, number, index) {
+
 	const div = document.createElement("div");
 	parent.appendChild(div);
 	div.classList.add('keys-ops');
 
 	div.addEventListener("click", (event) => {
 		onButtonClick(event, index);
+		numberStep(event, index);
 	});
 
 	const p = document.createElement("p");
@@ -42,6 +45,7 @@ function createButton(parent, number, index) {
 	div.appendChild(p);
 
 	p.innerText = number;
+
 
 	return (p, div);
 }
@@ -52,18 +56,22 @@ function onButtonClick(event, index) {
 
 	if (numbers[index - 1] == null) {
 		replaceIndex = index - 1;
+		stepNumber.push(++step)
 	}
 
 	if (numbers[index + 1] == null) {
 		replaceIndex = index + 1;
+		stepNumber.push(++step)
 	}
 
 	if (numbers[index - 4] == null) {
 		replaceIndex = index - 4;
+		stepNumber.push(++step)
 	}
 
 	if (numbers[index + 4] == null) {
 		replaceIndex = index + 4;
+		stepNumber.push(++step)
 	}
 	//============================================================
 	if (replaceIndex != (null || undefined)) {
@@ -71,17 +79,46 @@ function onButtonClick(event, index) {
 		let temp = numbers[replaceIndex];//num
 
 		let textRemOffClic = button_p[index];//but
-		textRemOffClic.classList.add('white-key');
+		textRemOffClic.classList.add('white-key');//style
 		textRemOffClic.innerText = numbers[replaceIndex];//but
 
 		numbers[replaceIndex] = numbers[index];//num
 
 		let textRemOnClic = button_p[replaceIndex];//but
 		textRemOnClic.innerText = numbers[index];//but
-		textRemOnClic.classList.remove('white-key');
+		textRemOnClic.classList.remove('white-key');//style
 
 		numbers[index] = temp;//num
-
 	}
+}
 
+let stepNumber = [0];
+let step = stepNumber[0];
+
+const stepText = document.createElement("p");
+stepText.innerText = "0";
+parentStep.appendChild(stepText);
+
+function numberStep(index) {
+
+	for (let i = -1; i < stepNumber.length; i++) {
+		stepText.innerText = stepNumber[i];
+	}
+}
+
+let time = 0;
+const times = document.getElementById('times');
+
+setInterval(updateCountdown, 1000);
+
+function updateCountdown() {
+	let minutes = Math.floor(time / 60);
+	if (minutes < 10) {
+		minutes = "0" + minutes;
+	}
+	let seconds = time % 60;
+	seconds = seconds < 10 ? "0" + seconds : seconds;
+
+	times.innerHTML = `${minutes}:${seconds}`;
+	time++;
 }
