@@ -5,6 +5,8 @@ const numbers = [];
 const button_p = [];
 
 
+
+// random reference
 for (let i = 0; (i < 16) && (i < numbersRandom.length); i++) {
 	let r = Math.floor(Math.random() * (numbersRandom.length - i)) + i;
 	let numbersTemporary = numbersRandom[r];
@@ -26,6 +28,7 @@ numbers.forEach((number, index) => {
 	button_p.push(createButton(parent, number, index));
 });
 
+//reference
 let whiteKey = button_p[15];
 whiteKey.classList.add('white-key');
 
@@ -50,29 +53,40 @@ function createButton(parent, number, index) {
 	return (p, div);
 }
 
+
+
 function onButtonClick(event, index) {
 
 	let replaceIndex = null;
 
-	if (numbers[index - 1] == null) {
+
+
+	if (numbers[index - 1] === null) {//right
 		replaceIndex = index - 1;
-		stepNumber.push(++step)
-	}
+		stepNumber.push(++step);
 
-	if (numbers[index + 1] == null) {
+		arrDeriction.push("right");
+	}
+	if (numbers[index + 1] === null) {//left
 		replaceIndex = index + 1;
-		stepNumber.push(++step)
-	}
+		stepNumber.push(++step);
 
-	if (numbers[index - 4] == null) {
+		arrDeriction.push("left");
+	}
+	if (numbers[index - 4] === null) {//down
 		replaceIndex = index - 4;
-		stepNumber.push(++step)
-	}
+		stepNumber.push(++step);
 
-	if (numbers[index + 4] == null) {
-		replaceIndex = index + 4;
-		stepNumber.push(++step)
+		arrDeriction.push("down");
 	}
+	if (numbers[index + 4] === null) {//up
+		replaceIndex = index + 4;
+		stepNumber.push(++step);
+
+		arrDeriction.push("up");
+	}
+	console.log(arrDeriction);
+
 	//============================================================
 	if (replaceIndex != (null || undefined)) {
 
@@ -92,12 +106,15 @@ function onButtonClick(event, index) {
 	}
 }
 
+//step and wath
+
 let stepNumber = [0];
 let step = stepNumber[0];
 
 const stepText = document.createElement("p");
 stepText.innerText = "0";
 parentStep.appendChild(stepText);
+
 
 function numberStep(index) {
 
@@ -109,16 +126,37 @@ function numberStep(index) {
 let time = 0;
 const times = document.getElementById('times');
 
-setInterval(updateCountdown, 1000);
+setInterval(updateCountUp, 1000);
 
-function updateCountdown() {
+function updateCountUp() {
 	let minutes = Math.floor(time / 60);
-	if (minutes < 10) {
-		minutes = "0" + minutes;
-	}
+	minutes = minutes < 10 ? "0" + minutes : minutes;
+
 	let seconds = time % 60;
 	seconds = seconds < 10 ? "0" + seconds : seconds;
 
 	times.innerHTML = `${minutes}:${seconds}`;
 	time++;
+}
+
+//form
+
+const reset = document.getElementById('reset');//reset
+
+reset.addEventListener("click", () => {
+	location.reload();
+})
+
+
+
+const arrDeriction = [];
+
+let undo = document.getElementById('undo');
+undo.addEventListener("click", undoBut);
+
+function undoBut() {
+	if (arrDeriction[arrDeriction.length - 1] === "right") {
+		numbers[index + 1]
+	}
+
 }
