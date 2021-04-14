@@ -149,8 +149,6 @@ reset.addEventListener("click", () => {
 
 const arrDeriction = [];
 
-console.log(arrDeriction[arrDeriction.length - 1] == "up");
-
 const undo = document.getElementById('undo');
 undo.addEventListener("click", (event) => {
 	console.log(1);
