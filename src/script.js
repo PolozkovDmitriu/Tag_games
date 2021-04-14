@@ -59,6 +59,10 @@ function onButtonClick(event, index) {
 
 	let replaceIndex = null;
 
+	if (!startTimer) {
+		startTimers();
+	}
+
 	if (numbers[index - 1] === null) {//right
 		replaceIndex = index - 1;
 		stepNumber.push(++step);
@@ -124,7 +128,13 @@ function numberStep(index) {
 let time = 0;
 const times = document.getElementById('times');
 
-setInterval(updateCountUp, 1000);
+
+let startTimer = false;
+
+function startTimers() {
+	startTimer = true;
+	setInterval(updateCountUp, 1000);
+}
 
 function updateCountUp() {
 	let minutes = Math.floor(time / 60);
