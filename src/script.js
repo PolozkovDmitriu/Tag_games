@@ -53,13 +53,11 @@ function createButton(parent, number, index) {
 	return (p, div);
 }
 
-
+let aaaaaaa;
 
 function onButtonClick(event, index) {
 
 	let replaceIndex = null;
-
-
 
 	if (numbers[index - 1] === null) {//right
 		replaceIndex = index - 1;
@@ -151,12 +149,55 @@ reset.addEventListener("click", () => {
 
 const arrDeriction = [];
 
-let undo = document.getElementById('undo');
-undo.addEventListener("click", undoBut);
+console.log(arrDeriction[arrDeriction.length - 1] == "up");
 
-function undoBut() {
-	if (arrDeriction[arrDeriction.length - 1] === "right") {
-		numbers[index + 1]
+const undo = document.getElementById('undo');
+undo.addEventListener("click", (event) => {
+	console.log(1);
+	undoBut(index);
+});
+
+
+function undoBut(index) {
+
+	let replaceIndexUndo = null;
+
+
+	if (arrDeriction[arrDeriction.length - 1] == "right") {
+		replaceIndexUndo = index + 1;
+		stepNumber.push(--step);
+		arrDeriction.splice(arrDeriction.length - 1, 1);
+	}
+	if (arrDeriction[arrDeriction.length - 1] == "left") {
+		replaceIndexUndo = index - 1;
+		stepNumber.push(--step);
+		arrDeriction.splice(arrDeriction.length - 1, 1);
+	}
+	if (arrDeriction[arrDeriction.length - 1] == "up") {
+		replaceIndexUndo = index - 4;
+		stepNumber.push(--step);
+		arrDeriction.splice(arrDeriction.length - 1, 1);
+	}
+	if (arrDeriction[arrDeriction.length - 1] == "down") {
+		replaceIndexUndo = index + 4;
+		stepNumber.push(--step);
+		arrDeriction.splice(arrDeriction.length - 1, 1);
 	}
 
+	if (replaceIndexUndo != (null || undefined)) {
+
+		let tempUndo = numbers[replaceIndexUndo];
+
+		let textRemOffClicUndo = button_p[index];//but
+		textRemOffClicUndo.classList.add('white-key');//style
+		textRemOffClicUndo.innerText = numbers[replaceIndexUndo];//but
+
+		numbers[replaceIndexUndo] = numbers[index];
+
+		let textRemOnClicUndo = button_p[replaceIndexUndo];//but
+		textRemOnClicUndo.innerText = numbers[index];//but
+		textRemOnClicUndo.classList.remove('white-key');//style
+
+		numbers[index] = tempUndo;
+	}
 }
