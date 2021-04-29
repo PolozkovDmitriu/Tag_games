@@ -1,7 +1,7 @@
 "use strict"
 
 const numbersRandom = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-const numbers = [];
+let numbers = [];
 const button_p = [];
 
 
@@ -38,10 +38,13 @@ function createButton(parent, number, index) {
 	parent.appendChild(div);
 	div.classList.add('keys-ops');
 
+
 	div.addEventListener("click", (event) => {
 		onButtonClick(event, index);
 		numberStep(event, index);
 	});
+
+
 
 	const p = document.createElement("p");
 	p.classList.add('keys-p');
@@ -53,9 +56,18 @@ function createButton(parent, number, index) {
 	return (p, div);
 }
 
-let aaaaaaa;
+
+let UndoStek = [];
 
 function onButtonClick(event, index) {
+
+	const undoBut = document.getElementById('undo');
+
+	undoBut.addEventListener("click", (event) => {
+		numbers = UndoStek[UndoStek.length - 1];
+		onButtonClick(event, index);
+	});
+
 
 	let replaceIndex = null;
 
@@ -66,28 +78,20 @@ function onButtonClick(event, index) {
 	if (numbers[index - 1] === null) {//right
 		replaceIndex = index - 1;
 		stepNumber.push(++step);
-
-		arrDeriction.push("right");
 	}
 	if (numbers[index + 1] === null) {//left
 		replaceIndex = index + 1;
 		stepNumber.push(++step);
-
-		arrDeriction.push("left");
 	}
 	if (numbers[index - 4] === null) {//down
 		replaceIndex = index - 4;
 		stepNumber.push(++step);
-
-		arrDeriction.push("down");
 	}
 	if (numbers[index + 4] === null) {//up
 		replaceIndex = index + 4;
 		stepNumber.push(++step);
-
-		arrDeriction.push("up");
 	}
-	console.log(arrDeriction);
+
 
 	//============================================================
 	if (replaceIndex != (null || undefined)) {
@@ -106,6 +110,10 @@ function onButtonClick(event, index) {
 
 		numbers[index] = temp;//num
 	}
+
+
+	UndoStek[stepNumber.length] = numbers.slice();
+
 }
 
 //step and wath
@@ -156,56 +164,3 @@ reset.addEventListener("click", () => {
 })
 
 
-
-const arrDeriction = [];
-
-const undo = document.getElementById('undo');
-undo.addEventListener("click", (event) => {
-	console.log(1);
-	undoBut(index);
-});
-
-
-function undoBut(index) {
-
-	let replaceIndexUndo = null;
-
-
-	if (arrDeriction[arrDeriction.length - 1] == "right") {
-		replaceIndexUndo = index + 1;
-		stepNumber.push(--step);
-		arrDeriction.splice(arrDeriction.length - 1, 1);
-	}
-	if (arrDeriction[arrDeriction.length - 1] == "left") {
-		replaceIndexUndo = index - 1;
-		stepNumber.push(--step);
-		arrDeriction.splice(arrDeriction.length - 1, 1);
-	}
-	if (arrDeriction[arrDeriction.length - 1] == "up") {
-		replaceIndexUndo = index - 4;
-		stepNumber.push(--step);
-		arrDeriction.splice(arrDeriction.length - 1, 1);
-	}
-	if (arrDeriction[arrDeriction.length - 1] == "down") {
-		replaceIndexUndo = index + 4;
-		stepNumber.push(--step);
-		arrDeriction.splice(arrDeriction.length - 1, 1);
-	}
-
-	if (replaceIndexUndo != (null || undefined)) {
-
-		let tempUndo = numbers[replaceIndexUndo];
-
-		let textRemOffClicUndo = button_p[index];//but
-		textRemOffClicUndo.classList.add('white-key');//style
-		textRemOffClicUndo.innerText = numbers[replaceIndexUndo];//but
-
-		numbers[replaceIndexUndo] = numbers[index];
-
-		let textRemOnClicUndo = button_p[replaceIndexUndo];//but
-		textRemOnClicUndo.innerText = numbers[index];//but
-		textRemOnClicUndo.classList.remove('white-key');//style
-
-		numbers[index] = tempUndo;
-	}
-}
